@@ -1,0 +1,14 @@
+<RevitAddIns>
+    <AddIn Type="Application">
+        <Name>ICI_capacitacion</Name>
+        <Assembly>ICI_capacitacion\ICI_capacitacion.dll</Assembly>
+        <AddInId>2FD426EC-C00C-4ADE-BFFC-9CC533A79F17</AddInId>
+        <FullClassName>ICI_capacitacion.Application</FullClassName>
+        <VendorId>Development</VendorId>
+        <VendorDescription></VendorDescription>
+    </AddIn>
+    <ManifestSettings>
+        <UseRevitContext>False</UseRevitContext>
+        <ContextName>ICI_capacitacion</ContextName>
+    </ManifestSettings>
+</RevitAddIns>
