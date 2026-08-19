@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using View = Autodesk.Revit.DB.View;
 
 namespace ICI_capacitacion.Extensions
 {

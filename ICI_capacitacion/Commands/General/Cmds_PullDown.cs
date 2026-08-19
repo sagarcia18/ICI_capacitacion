@@ -1,10 +1,12 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
+using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Form = System.Windows.Forms;
 
 namespace ICI_capacitacion.Cmds_PullDown
 {

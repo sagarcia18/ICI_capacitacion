@@ -19,38 +19,20 @@ namespace ICI_capacitacion.Cmds_General
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
-            // Collec all walls
-            var walls = new FilteredElementCollector(doc)
-                .OfClass(typeof(Wall))
-                .WhereElementIsNotElementType()
-                .ToElements();
+            //Show some forms
 
+            ICIFrm.Custom.Message(message: "This is a simple message.");
+            var yesNoResult = ICIFrm.Custom.Message(title: "Test", message: "This is a yes no message.", yesNo: true);
 
+            if (yesNoResult.Cancelled)
+            {
+                return ICIFrm.Custom.Cancelled("The user cancelled the operation.");
+            }
 
-            TaskDialog.Show(doc.Title, $"We have {walls.Count} walls in the model.");
+            ICIFrm.Custom.Error("The operation failed.");
 
-            //Construct a filter
-            var parameterId = new ElementId(BuiltInParameter.WALL_USER_HEIGHT_PARAM);
-            var provider = new ParameterValueProvider(parameterId);
-            var rule = new FilterNumericLess();
-            var passesRule = new FilterDoubleRule(provider, rule, 12, 0.0);
-            var paramFilter = new ElementParameterFilter(passesRule);
-
-            //Collect all walls lower than 12 feet
-            var wallsFiltered = new FilteredElementCollector(doc)
-                .OfCategory(BuiltInCategory.OST_Walls)
-                .WhereElementIsNotElementType()
-                .WherePasses(paramFilter)
-                .ToElements();
-
-            TaskDialog.Show(doc.Title, $"We have {wallsFiltered.Count} small walls in the model.");
-
-            var sheets = doc.Ext_GetSheets();
-            var revisions = doc.Ext_GetRevisions();
-            TaskDialog.Show(doc.Title, $"We have {sheets.Count} sheets and {revisions.Count} revisions in the model.");
-           
             // Final return
-            return Result.Succeeded;
+            return ICIFrm.Custom.Completed("The operation completed successfully.");
         }
     }
 }

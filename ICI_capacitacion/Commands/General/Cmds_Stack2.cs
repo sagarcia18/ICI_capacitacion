@@ -20,7 +20,7 @@ namespace ICI_capacitacion.Cmds_Stack2
             Document doc = uiDoc.Document;
 
             // Code logic here
-            TaskDialog.Show("It works!", doc.Title);
+            Autodesk.Revit.UI.TaskDialog.Show("It works!", doc.Title);
             // Final return
             return Result.Succeeded;
         }

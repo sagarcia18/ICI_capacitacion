@@ -1,19 +1,102 @@
-﻿using System;
+﻿using Autodesk.Revit.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ICI_capacitacion.Forms
 {
     public static class Custom
     {
+        /// <summary>
+        /// Displays a message box with customizable title, message, buttons, and icon. Returns a FormResult object indicating the user's response.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="yesNo"></param>
+        /// <param name="noCancel"></param>
+        /// <param name="icon"></param>
+        /// <returns></returns>
         public static FormResult Message(string title = null, string message = null,
-            bool YesNo = false, bool noCancel = false, MessageBoxIcon icon = MessageBoxImage.None)
+            bool yesNo = false, bool noCancel = false, MessageBoxIcon icon = MessageBoxIcon.None)
         {
-            
+            //Base form result object
+            var FormResult = new FormResult(isValid: false);
+
+            // Default values for title and message
+            title ??= "Default title";
+            message ??= "No message provided";
+            // Catch the question icon
+            if (yesNo && icon == MessageBoxIcon.None) 
+                { icon = MessageBoxIcon.Question; }
+
+
+            //Set buttons
+            var buttons = MessageBoxButtons.OKCancel;
+            if (noCancel)
+            {
+                buttons = MessageBoxButtons.OK;
+            }
+            else if ( yesNo) 
+            {
+                buttons = MessageBoxButtons.YesNo;
+            }
+
+            //Run the form
+
+            var dialogResult = MessageBox.Show(message, title, buttons, icon);
+
+            // Process the result
+            if (dialogResult == DialogResult.Yes  || dialogResult == DialogResult.OK)
+            {
+                FormResult.Validate();
+            }
+
+            //return the form result
+            return FormResult;
+        }
+        /// <summary>
+        /// Displays a message box indicating that a task has been completed successfully. Returns a FormResult object indicating the user's response.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static Result Completed(String message)
+        {
+            Message(title: "task Completed",
+               message: message,
+                noCancel: true,
+                icon: MessageBoxIcon.Information);
+
+            return Result.Succeeded;
+        }
+        /// <summary>
+        /// Displays a message box indicating that an error has occurred. Returns a FormResult object indicating the user's response.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static Result Error(String message)
+        {
+            Message(title: "Error",
+               message: message,
+                noCancel: true,
+                icon: MessageBoxIcon.Error);
+            return Result.Cancelled;
+        }
+        /// <summary>
+        /// Displays a message box indicating that a task has been cancelled. Returns a FormResult object indicating the user's response.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static Result Cancelled(String message)
+        {
+            Message(title: "task Completed",
+               message: message,
+                noCancel: true,
+                icon: MessageBoxIcon.Warning);
+            return Result.Cancelled;
         }
     }
 

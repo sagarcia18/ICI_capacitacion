@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
+using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 
 using Nice3point.Revit.Toolkit.External;
 
