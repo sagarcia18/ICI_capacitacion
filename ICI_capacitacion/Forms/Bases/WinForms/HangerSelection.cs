@@ -3,6 +3,7 @@ using System;
 using System.Windows.Media.Animation;
 using Form = System.Windows.Forms.Form;
 using ICIFil = ICI_capacitacion.Utilities.File_Utils;
+using ICIFrm = ICI_capacitacion.Forms;
 using Color = System.Drawing.Color;
 using baseFrm = ICI_capacitacion.Forms.Base;
 using ICI_capacitacion.Forms.Base;
@@ -29,6 +30,22 @@ namespace ICI_capacitacion.Forms.Hanger
             this.Tag = null;
 
             PopulateCombobox();
+
+            rButtonMetrica.CheckedChanged += RadioButtonUnit_CheckedChanged;
+            rButtonImperial.CheckedChanged += RadioButtonUnit_CheckedChanged;
+            UpdateUnitLabels();
+        }
+
+        private void RadioButtonUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUnitLabels();
+        }
+
+        private void UpdateUnitLabels()
+        {
+            string unit = rButtonImperial.Checked ? "ft" : "m";
+            unidad.Text = unit;
+            unidad2.Text = unit;
         }
 
         private void PopulateCombobox()
@@ -127,13 +144,43 @@ namespace ICI_capacitacion.Forms.Hanger
 
         private void ButtonOkClick(object sender, EventArgs e)
         {
+            if (!TryParseDistance(aExtremos.Text, out double endOffset))
+            {
+                ICIFrm.Custom.Error("La distancia a los extremos debe ser un número mayor a 0 y menor a 99.");
+                return;
+            }
+
+            if (!TryParseDistance(entreSoportes.Text, out double spacing))
+            {
+                ICIFrm.Custom.Error("La distancia entre soportes debe ser un número mayor a 0 y menor a 99.");
+                return;
+            }
+
             if (this.comboBox.SelectedIndex >= 0 && this.comboBox.SelectedIndex < Values.Count)
             {
-                var selectedValue = this.Values[this.comboBox.SelectedIndex];
+                var selectedFamily = this.Values[this.comboBox.SelectedIndex] as Family;
 
-                this.Tag = selectedValue;
+                bool isImperial = rButtonImperial.Checked;
+                var unit = isImperial ? UnitTypeId.Feet : UnitTypeId.Meters;
+                double endOffsetFeet = UnitUtils.ConvertToInternalUnits(endOffset, unit);
+                double spacingFeet = UnitUtils.ConvertToInternalUnits(spacing, unit);
+
+                this.Tag = new HangerFormResult(selectedFamily, endOffsetFeet, spacingFeet, isImperial);
                 this.DialogResult = DialogResult.OK;
             }
+        }
+
+        private static bool TryParseDistance(string text, out double value)
+        {
+            value = 0;
+            if (string.IsNullOrWhiteSpace(text))
+                return false;
+
+            if (!double.TryParse(text, System.Globalization.NumberStyles.Float,
+                    System.Globalization.CultureInfo.InvariantCulture, out value))
+                return false;
+
+            return value > 0 && value < 99;
         }
 
         private void ButtonCancelClick(object sender, EventArgs e)

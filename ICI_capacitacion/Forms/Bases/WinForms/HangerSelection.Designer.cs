@@ -45,9 +45,9 @@ namespace ICI_capacitacion.Forms.Hanger
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,8 +62,8 @@ namespace ICI_capacitacion.Forms.Hanger
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(16, 23);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(16, -9);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -73,7 +73,7 @@ namespace ICI_capacitacion.Forms.Hanger
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.MinimumSize = new System.Drawing.Size(133, 123);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -87,6 +87,7 @@ namespace ICI_capacitacion.Forms.Hanger
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.unidad2);
             this.splitContainer1.Panel2.Controls.Add(this.unidad);
@@ -94,7 +95,7 @@ namespace ICI_capacitacion.Forms.Hanger
             this.splitContainer1.Panel2.Controls.Add(this.aExtremos);
             this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(685, 165);
+            this.splitContainer1.Size = new System.Drawing.Size(548, 258);
             this.splitContainer1.SplitterDistance = 101;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
@@ -102,8 +103,8 @@ namespace ICI_capacitacion.Forms.Hanger
             // rButtonImperial
             // 
             this.rButtonImperial.AutoSize = true;
-            this.rButtonImperial.Location = new System.Drawing.Point(29, 98);
-            this.rButtonImperial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rButtonImperial.Location = new System.Drawing.Point(20, 98);
+            this.rButtonImperial.Margin = new System.Windows.Forms.Padding(4);
             this.rButtonImperial.Name = "rButtonImperial";
             this.rButtonImperial.Size = new System.Drawing.Size(76, 20);
             this.rButtonImperial.TabIndex = 1;
@@ -115,8 +116,8 @@ namespace ICI_capacitacion.Forms.Hanger
             // 
             this.rButtonMetrica.AutoSize = true;
             this.rButtonMetrica.Checked = true;
-            this.rButtonMetrica.Location = new System.Drawing.Point(28, 54);
-            this.rButtonMetrica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rButtonMetrica.Location = new System.Drawing.Point(20, 63);
+            this.rButtonMetrica.Margin = new System.Windows.Forms.Padding(4);
             this.rButtonMetrica.Name = "rButtonMetrica";
             this.rButtonMetrica.Size = new System.Drawing.Size(72, 20);
             this.rButtonMetrica.TabIndex = 0;
@@ -129,9 +130,9 @@ namespace ICI_capacitacion.Forms.Hanger
             this.flowLayoutPanel2.Controls.Add(this.label1);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(579, 36);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(442, 36);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // label1
@@ -141,7 +142,7 @@ namespace ICI_capacitacion.Forms.Hanger
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Yi Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(257, 20);
             this.label1.TabIndex = 0;
@@ -193,7 +194,7 @@ namespace ICI_capacitacion.Forms.Hanger
             // entreSoportes
             // 
             this.entreSoportes.Location = new System.Drawing.Point(231, 123);
-            this.entreSoportes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.entreSoportes.Margin = new System.Windows.Forms.Padding(4);
             this.entreSoportes.Name = "entreSoportes";
             this.entreSoportes.Size = new System.Drawing.Size(132, 22);
             this.entreSoportes.TabIndex = 2;
@@ -202,38 +203,38 @@ namespace ICI_capacitacion.Forms.Hanger
             // aExtremos
             // 
             this.aExtremos.Location = new System.Drawing.Point(231, 66);
-            this.aExtremos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.aExtremos.Margin = new System.Windows.Forms.Padding(4);
             this.aExtremos.Name = "aExtremos";
             this.aExtremos.Size = new System.Drawing.Size(132, 22);
             this.aExtremos.TabIndex = 1;
             // 
             // comboBox
             // 
-            this.comboBox.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.comboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboBox.BackColor = System.Drawing.Color.White;
             this.comboBox.DropDownHeight = 200;
-            this.comboBox.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox.ForeColor = System.Drawing.Color.Black;
             this.comboBox.FormattingEnabled = true;
             this.comboBox.IntegralHeight = false;
-            this.comboBox.ItemHeight = 50;
-            this.comboBox.Location = new System.Drawing.Point(0, 165);
-            this.comboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox.ItemHeight = 16;
+            this.comboBox.Location = new System.Drawing.Point(8, 154);
+            this.comboBox.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(685, 56);
+            this.comboBox.Size = new System.Drawing.Size(430, 24);
             this.comboBox.TabIndex = 2;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.Window;
             this.flowLayoutPanel3.Controls.Add(this.label2);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 165);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 505);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(685, 28);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(933, 44);
             this.flowLayoutPanel3.TabIndex = 8;
             this.flowLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel3_Paint);
             // 
@@ -243,47 +244,13 @@ namespace ICI_capacitacion.Forms.Hanger
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
             this.label2.Font = new System.Drawing.Font("Microsoft Yi Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(4, 4);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Elección de familia";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonOk, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 245);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(40, 12, 40, 12);
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(685, 76);
-            this.tableLayoutPanel1.TabIndex = 9;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.AutoSize = true;
-            this.buttonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonCancel.Location = new System.Drawing.Point(346, 16);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonCancel.MaximumSize = new System.Drawing.Size(267, 49);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(267, 44);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancelar";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
             // 
             // buttonOk
             // 
@@ -293,24 +260,57 @@ namespace ICI_capacitacion.Forms.Hanger
             this.buttonOk.AutoSize = true;
             this.buttonOk.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonOk.Location = new System.Drawing.Point(44, 16);
-            this.buttonOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOk.MaximumSize = new System.Drawing.Size(267, 49);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(267, 44);
+            this.buttonOk.Size = new System.Drawing.Size(228, 39);
             this.buttonOk.TabIndex = 0;
             this.buttonOk.Text = "Poner soportes";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.ButtonOkClick);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.AutoSize = true;
+            this.buttonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonCancel.Location = new System.Drawing.Point(280, 16);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCancel.MaximumSize = new System.Drawing.Size(267, 49);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(224, 39);
+            this.buttonCancel.TabIndex = 1;
+            this.buttonCancel.Text = "Cancelar";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancelClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.42735F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.57265F));
+            this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonOk, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 185);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(40, 12, 40, 12);
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(548, 71);
+            this.tableLayoutPanel1.TabIndex = 9;
             // 
             // HangerSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(685, 321);
+            this.ClientSize = new System.Drawing.Size(548, 256);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
-            this.Controls.Add(this.comboBox);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -354,8 +354,8 @@ namespace ICI_capacitacion.Forms.Hanger
         private Label label4;
         private FlowLayoutPanel flowLayoutPanel3;
         private Label label2;
-        private TableLayoutPanel tableLayoutPanel1;
         private Button buttonOk;
         private Button buttonCancel;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

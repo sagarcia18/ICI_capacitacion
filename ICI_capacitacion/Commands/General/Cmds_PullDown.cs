@@ -31,14 +31,39 @@ namespace ICI_capacitacion.Cmds_PullDown
 
             var scriptResult = doc.Ext_FamilyFromList(familieNames);
 
-
             if (scriptResult.Cancelled)
             {
                 return Result.Cancelled;
             }
-            var selectedFamily = scriptResult.Object as Family;
+            var hangerData = scriptResult.Object as ICIFrm.Hanger.HangerFormResult;
 
-            ICIFrm.Custom.Message(message: selectedFamily.Name);
+            var symbol = hangerData.SelectedFamily.Ext_FirstSymbol(doc);
+            if (symbol is null)
+            {
+                ICIFrm.Custom.Error("La familia seleccionada no tiene tipos disponibles.");
+                return Result.Failed;
+            }
+
+            var pipes = uiDoc.Ext_PickPipes();
+            if (pipes.Count == 0)
+            {
+                return Result.Cancelled;
+            }
+
+            using (var tx = new Transaction(doc, "Colocar soportes de tubería"))
+            {
+                tx.Start();
+
+                foreach (var pipe in pipes)
+                {
+                    var fractions = pipe.Ext_GetHangerFractions(hangerData.EndOffsetFeet, hangerData.SpacingFeet);
+                    var angle = pipe.Ext_GetHorizontalAngle();
+                    pipe.Ext_PlaceHangers(doc, symbol, fractions, angle);
+                }
+
+                tx.Commit();
+            }
+
             return Result.Succeeded;
 
             // Final return
