@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ICI_capacitacion": {
+      "commandName": "Project",
+      "workingDirectory": "G:\\Mi unidad\\ICI\\Automatizacion\\Proyecto\\07_Pruebas_Piloto\\01_Proyectos_Prueba"
+    }
+  }
+}

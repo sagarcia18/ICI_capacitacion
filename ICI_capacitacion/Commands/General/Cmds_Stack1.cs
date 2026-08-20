@@ -21,7 +21,7 @@ namespace ICI_capacitacion.Cmds_Stack1
             Document doc = uiDoc.Document;
 
             // Code logic here
-            TaskDialog.Show("It works!", doc.Title);
+            
             // Final return
             return Result.Succeeded;
         }

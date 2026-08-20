@@ -6,11 +6,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace ICI_capacitacion.Forms
 {
     public static class Custom
     {
+        #region Message and variants
         /// <summary>
         /// Displays a message box with customizable title, message, buttons, and icon. Returns a FormResult object indicating the user's response.
         /// </summary>
@@ -30,8 +32,8 @@ namespace ICI_capacitacion.Forms
             title ??= "Default title";
             message ??= "No message provided";
             // Catch the question icon
-            if (yesNo && icon == MessageBoxIcon.None) 
-                { icon = MessageBoxIcon.Question; }
+            if (yesNo && icon == MessageBoxIcon.None)
+            { icon = MessageBoxIcon.Question; }
 
 
             //Set buttons
@@ -40,7 +42,7 @@ namespace ICI_capacitacion.Forms
             {
                 buttons = MessageBoxButtons.OK;
             }
-            else if ( yesNo) 
+            else if (yesNo)
             {
                 buttons = MessageBoxButtons.YesNo;
             }
@@ -50,7 +52,7 @@ namespace ICI_capacitacion.Forms
             var dialogResult = MessageBox.Show(message, title, buttons, icon);
 
             // Process the result
-            if (dialogResult == DialogResult.Yes  || dialogResult == DialogResult.OK)
+            if (dialogResult == DialogResult.Yes || dialogResult == DialogResult.OK)
             {
                 FormResult.Validate();
             }
@@ -98,8 +100,69 @@ namespace ICI_capacitacion.Forms
                 icon: MessageBoxIcon.Warning);
             return Result.Cancelled;
         }
+
+        #endregion
+
+        public static FormResult SelectFromDropdown(List<string> keys, List<object> values,
+            string title = null, string message = null, int defaultIndex = -1)
+        {
+            var formResult = new FormResult(isValid: false);
+
+            // Set default values for title and message
+            title ??= "Select an option";
+            message ??= "Please select an option from the dropdown list.";
+
+            //Process the form 
+            using (var form = new Base.BaseDropdown(keys, values, title, message, defaultIndex))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    formResult.Validate(form.Tag as object);
+
+                    return formResult;
+                }
+            }
+            return formResult;
+        }
+
+        public static FormResult SelectFromDropdown(List<string> keys, List<object> values, bool notBasic,
+           string title = null, string message = null, int defaultIndex = -1)
+        {
+            var formResult = new FormResult(isValid: false);
+
+            // Set default values for title and message
+            title ??= "Select an option";
+            message ??= "Please select an option from the dropdown list.";
+
+           
+            //Process the form 
+            if(notBasic)
+            {
+                using (var form = new Hanger.HangerSelection(keys, values, title, message, defaultIndex))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        formResult.Validate(form.Tag as object);
+                        return formResult;
+                    }   
+                }
+            }
+            else
+            {
+                using (var form = new Hanger.HangerSelection(keys, values, title, message, defaultIndex))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        formResult.Validate(form.Tag as object);
+                        return formResult;
+                    }
+                }
+            }
+            return formResult;
+        }
     }
 
+    #region FormResult class
     public class FormResult
     {
         //Form object properties 
@@ -147,4 +210,6 @@ namespace ICI_capacitacion.Forms
             this.Objects = objs;
         }
     }
+
+    #endregion
 }

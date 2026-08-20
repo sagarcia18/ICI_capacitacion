@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Form = System.Windows.Forms;
+using ICI_capacitacion.Extensions;
+using ICIFrm = ICI_capacitacion.Forms;
 
 namespace ICI_capacitacion.Cmds_PullDown
+
 {
     //Example command
     [Transaction(TransactionMode.Manual)]
@@ -21,10 +24,24 @@ namespace ICI_capacitacion.Cmds_PullDown
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
+
             // Code logic here
-            TaskDialog.Show("Button 1 worked!", doc.Title);
-            // Final return
+
+            List<string> familieNames = ["Soporte sismorresistente", "Soporte de tipo pera"];
+
+            var scriptResult = doc.Ext_FamilyFromList(familieNames);
+
+
+            if (scriptResult.Cancelled)
+            {
+                return Result.Cancelled;
+            }
+            var selectedFamily = scriptResult.Object as Family;
+
+            ICIFrm.Custom.Message(message: selectedFamily.Name);
             return Result.Succeeded;
+
+            // Final return
         }
     }
 

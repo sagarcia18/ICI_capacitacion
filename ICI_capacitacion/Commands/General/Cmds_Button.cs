@@ -19,20 +19,20 @@ namespace ICI_capacitacion.Cmds_General
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
-            //Show some forms
+            //Select a revision
 
-            ICIFrm.Custom.Message(message: "This is a simple message.");
-            var yesNoResult = ICIFrm.Custom.Message(title: "Test", message: "This is a yes no message.", yesNo: true);
+            var revisionResult = doc.Ext_SelectRevision();
 
-            if (yesNoResult.Cancelled)
+            if (revisionResult.Cancelled)
             {
-                return ICIFrm.Custom.Cancelled("The user cancelled the operation.");
+                return Result.Cancelled;
             }
+            var selectedRevision = revisionResult.Object as Revision;
 
-            ICIFrm.Custom.Error("The operation failed.");
+            ICIFrm.Custom.Message(message: selectedRevision.Ext_ToRevisionKey());
+            return Result.Succeeded;
 
             // Final return
-            return ICIFrm.Custom.Completed("The operation completed successfully.");
         }
     }
 }
