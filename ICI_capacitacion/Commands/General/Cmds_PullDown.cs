@@ -37,8 +37,7 @@ namespace ICI_capacitacion.Cmds_PullDown
             }
             var hangerData = scriptResult.Object as ICIFrm.Hanger.HangerFormResult;
 
-            var symbol = hangerData.SelectedFamily.Ext_FirstSymbol(doc);
-            if (symbol is null)
+            if (hangerData.SelectedFamily.GetFamilySymbolIds().Count == 0)
             {
                 ICIFrm.Custom.Error("La familia seleccionada no tiene tipos disponibles.");
                 return Result.Failed;
@@ -56,6 +55,18 @@ namespace ICI_capacitacion.Cmds_PullDown
 
                 foreach (var pipe in pipes)
                 {
+                    var diameter = pipe.Ext_GetDiameter();
+                    if (diameter is null)
+                    {
+                        continue;
+                    }
+
+                    var symbol = hangerData.SelectedFamily.Ext_SymbolByDiameter(doc, diameter.Value);
+                    if (symbol is null)
+                    {
+                        continue;
+                    }
+
                     var fractions = pipe.Ext_GetHangerFractions(hangerData.EndOffsetFeet, hangerData.SpacingFeet);
                     var angle = pipe.Ext_GetHorizontalAngle();
                     pipe.Ext_PlaceHangers(doc, symbol, fractions, angle);

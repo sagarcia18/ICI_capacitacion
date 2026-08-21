@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.DB.Structure;
+using ICI_capacitacion.Utilities;
 
 namespace ICI_capacitacion.Extensions
 {
@@ -34,6 +35,19 @@ namespace ICI_capacitacion.Extensions
             var line = pipe.Ext_GetLocationLine();
             var direction = (line.GetEndPoint(1) - line.GetEndPoint(0)).Normalize();
             return Math.Atan2(direction.Y, direction.X);
+        }
+
+        /// <summary>
+        /// Returns the pipe's nominal diameter, in inches, matching the unit used in hanger family
+        /// type names (e.g. a type named 4" fits a pipe with Ext_GetDiameter() == 4). Reads
+        /// RBS_CALCULATED_SIZE, Revit's own nominal-size text (already accounts for schedule/nominal
+        /// vs. actual pipe size), instead of the raw geometric diameter parameter. Returns null if
+        /// the size text can't be parsed as a diameter.
+        /// </summary>
+        public static double? Ext_GetDiameter(this Pipe pipe)
+        {
+            string sizeText = pipe.get_Parameter(BuiltInParameter.RBS_CALCULATED_SIZE)?.AsString();
+            return DiameterParsing.ParseFirst(sizeText);
         }
 
         #endregion
@@ -93,7 +107,13 @@ namespace ICI_capacitacion.Extensions
             foreach (var fraction in fractions)
             {
                 var point = line.Evaluate(fraction, true);
-                var instance = doc.Create.NewFamilyInstance(point, symbol, level, StructuralType.NonStructural);
+
+                // Hanger/support families of this kind are FamilyPlacementType.TwoLevelsBased (base
+                // level = clamp height, top level = structural attachment, rod length is a reporting
+                // parameter computed from the gap). The single-level NewFamilyInstance overload leaves
+                // that host relationship unset, so the clamp never lines up with the pipe; the
+                // two-level overload derives the base offset from the insertion point automatically.
+                var instance = doc.Create.NewFamilyInstance(point, symbol, level, level, StructuralType.NonStructural);
 
                 var axis = Line.CreateBound(point, point + XYZ.BasisZ);
                 ElementTransformUtils.RotateElement(doc, instance.Id, axis, angle);
